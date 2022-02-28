@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai+Looped&display=swap');
+
+body {
+  font-family: "Architects Daughter", sans-serif;
+  background-color: #ffffff;
+  background-image: url("https://transparenttextures.com/patterns/debut-light.png");
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+.card-body {
+  display: inline-block;
+  padding: 0px;
+}
+
+.customFont {
+  font-family: "Architects Daughter", sans-serif;
+  font-size: 1.7rem;
+}
+
+.close-btn {
+  background-color: rgba(0,0,0,0);
+  border:none;
+  cursor: pointer;
+  margin-left: auto;
+  text-align: left;
+  font-size: 0.2rem;
+}
+
+.close-btn:hover {
+  color: red;
+  transition: 0.2s;
+  transition-timing-function: ease;
+}
+
+.hidden-column {
+  color: rgba(0,0,0,0);
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+.shown-column {
+  font-size: 0.95rem;
+  user-select: none;
+}
+
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card-body {
+  align-items:center;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 2fr 1fr;
+  margin-bottom: 10px;  
+}
+
+.card-name{
+  font-size: 1.6rem;
+  font-weight: 1000;
+
+}
+
+.context-wrapper{
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.column-wrap{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.dropbox{
+ 
+  border: 1px solid;
+  border-color:rgb(234, 234, 234);
+  margin-right: -1px;
+  min-height: 1000px;
+  padding: 10px;
+  width: 420px;
+}
+
+
+.dragbox{
+  border: 1px solid;
+  border-color: rgb(224, 224, 224);
+  border-radius: 10px;
+  user-select: none;
+  padding: 5px 10px;
+  margin: 0 0 10px 0;
+  color: #111;
+  min-height: 10px;
+  width: 400px;
+}
+
+.dragbox:last-child {
+  margin-bottom: 0;
+}
+
+.injury-days {
+  background-image: url("circle-mark.png");
+  background-size:contain;
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  width: 100px;
+}
+
+.injury-days span {
+  display: inline-block;
+  font-size: 2rem;
+  line-height: normal;
+  padding-bottom: 3px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.injuries {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  text-align: left;
+}
+
+.injuries ul {
+  margin: 0;
+  padding: 0;
+}
+
+.injuries li {
+  list-style-type: none;
+  
+}
+
+
+.shock {
+  display: inline;
+  vertical-align: sub;
+}
