@@ -7,19 +7,6 @@ import axios from 'axios';
 import Heading from "./components/Heading"
 import Card from "./components/Card"
 
-// const itemsFromBackend = [
-//   { id: uuid(), content: "First task" },
-//   { id: uuid(), content: "Second task" },
-//   { id: uuid(), content: "Third task" },
-//   { id: uuid(), content: "Fourth task" },
-//   { id: uuid(), content: "Fifth task" },
-//   { id: uuid(), content: "Sixth task" },
-//   { id: uuid(), content: "Seventh task" },
-//   { id: uuid(), content: "Eighth task" }
-// ];
-
-
-
 var clientList = [
   {
     "_id": "620eec846bbb1d2487142f9f",
@@ -79,8 +66,6 @@ var columnList = {
   //   }
   // }
 };
-//console.log(itemsFromBackend);
-
 
 
 // // const getClients = () => {
@@ -128,28 +113,29 @@ const onDragEnd = (result, taskColumns, setTaskColumns) => {
       }
     })
   }
+
+  //inserir aqui o update
+  
 };
 function App() {
 
-  const [itemsFromBackend, setItemsFromBackend] = useState(clientList);
+  //const [itemsFromBackend, setItemsFromBackend] = useState(clientList);
   const [columnsFromBackend, setColumnsFromBackend] = useState(columnList); //andre 28-02
   const [taskColumns, setTaskColumns] = useState(columnsFromBackend); //original
-  // console.log("ColumnList B start:");
-  // console.log(columnList["Column B"].items);
 
   useEffect(async () => {
 
     const response = await fetch('http://localhost:8080/');
     const data = await response.json();
 
-    columnList["Column B"].items = data[0]
-    
-    setColumnsFromBackend(columnList)
-    setTaskColumns(columnsFromBackend)
+    columnList = data[0].Columns
+
+    setTaskColumns(columnList)
+
+    console.log("useEffect!");
 
   }, [])
-  
-  console.log(columnList);
+
   return (
     <div className="main-wrapper">
       <Heading />
