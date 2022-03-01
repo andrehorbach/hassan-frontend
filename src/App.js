@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import './App.css';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
-//import {v4 as uuid} from 'uuid';
-//import clients from "./clientList";
-import axios from 'axios';
 import Heading from "./components/Heading"
 import Card from "./components/Card"
-
-var clientList = [
-  {
-    "_id": "620eec846bbb1d2487142f9f",
-    "id": "dd95a973-3457-492e-953a-95fc37c090da",
-    "content": 1,
-    "name": "Atualizar",
-    "startDate": "",
-    "injuries": [],
-    "shock": "",
-    "__v": 0
-  }
-];
 
 var columnList = {
   ['Column A']: {
@@ -31,7 +15,7 @@ var columnList = {
   },
   ['Column B']: {
     name: ".",
-    items: clientList,
+    items: [],
     style: {
       backgroundColor: "rgb(244, 244, 244)",
       marginLeft: 25
@@ -68,20 +52,14 @@ var columnList = {
 };
 
 
-// // const getClients = () => {
-//   axios.get('http://localhost:8080/')
-//     .then(function(res){
-//       itemsFromBackend = res.data
-//       console.log('Items from backend axios:' );
-//       console.log(itemsFromBackend);
-//       return itemsFromBackend
-//     })
-//   // }
 
-const onDragEnd = (result, taskColumns, setTaskColumns) => {
-  if (!result.destination) return;
+const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
+ 
+
+  //if (!result.destination) return;
   const { source, destination } = result;
   if (source.droppableId !== destination.droppableId) {
+    
     const sourceColumn = taskColumns[source.droppableId];
     const destColumn = taskColumns[destination.droppableId];
     const sourceItems = [...sourceColumn.items];
@@ -99,7 +77,7 @@ const onDragEnd = (result, taskColumns, setTaskColumns) => {
         items: destItems
       }
     });
- 
+    
   } else {
     const column = taskColumns[source.droppableId];
     const copiedItems = [...column.items];
@@ -113,16 +91,40 @@ const onDragEnd = (result, taskColumns, setTaskColumns) => {
       }
     })
   }
+  //setCount para alterar 'count', e assim rodar o 'useEffect':
+  setCount(count + 1);
 
-  //inserir aqui o update
-  
 };
-function App() {
 
+//função para atualizar (enviar ao backend) as colunas:
+async function updateColumns(columns) {
+ 
+  const newColumns = {Columns: columns}
+
+  try {
+    const response = await fetch('http://localhost:8080/posts/', {
+      method: "POST",
+      mode: 'cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(newColumns)
+    })
+    const data = await response.json();
+    return data;
+  } catch (e){
+    return e;
+  }
+}
+
+
+function App() {
+  
   //const [itemsFromBackend, setItemsFromBackend] = useState(clientList);
   const [columnsFromBackend, setColumnsFromBackend] = useState(columnList); //andre 28-02
   const [taskColumns, setTaskColumns] = useState(columnsFromBackend); //original
+  const [count, setCount] = useState(true);
+  const isInitialMount = useRef(true);
 
+  // useEffect para carregar as colunas
   useEffect(async () => {
 
     const response = await fetch('http://localhost:8080/');
@@ -130,11 +132,17 @@ function App() {
 
     columnList = data[0].Columns
 
-    setTaskColumns(columnList)
-
-    console.log("useEffect!");
-
+    setTaskColumns(columnList)    
   }, [])
+
+  // useEffect que terá como 'trigger' a alteração em count (oriunda do onDragEnd), e acionará a função async function updateColumns(columns).
+  useEffect(() => {
+    if (isInitialMount.current) {
+       isInitialMount.current = false;
+    } else {
+      updateColumns(taskColumns)
+    }
+  }, [count]);
 
   return (
     <div className="main-wrapper">
@@ -142,7 +150,7 @@ function App() {
       <div className="context-wrapper">
         <DragDropContext
           className="customFont"
-          onDragEnd={result => onDragEnd(result, taskColumns, setTaskColumns)}
+          onDragEnd={result => onDragEnd(result, taskColumns, setTaskColumns, count, setCount)}
         >
           {Object.entries(taskColumns).map(([columnId, column], index) => {
             return (
