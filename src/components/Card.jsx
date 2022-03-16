@@ -1,37 +1,6 @@
 import React from "react";
-import styled from 'styled-components';
-import BoltIcon from '@mui/icons-material/Bolt';
-
-const CardContainer = styled.div`
-  display: grid;
-  height: 100px;
-  line-height: normal;
-  grid-template-columns: 1.5fr 1.1fr 1fr;
-  vertical-align: middle;
-`
-
-const CardShock = styled.div`
-  line-height: 25px;
-  padding-left: 10px;
-  vertical-align: center;
-`
-
-const CardLeft = styled.div`
-  font-size: 1.4rem;
-  line-height: 60px;
-  padding-left: 5px;
-`
-
-const CardRight = styled.div`
-  font-weight: 1000;
-  font-size: 2.0rem;
-  line-height: normal;
-`
-
-function randomInjuryDays() {
-  let injuryDays = Math.floor(Math.random() * 250) + 1
-  return injuryDays
-}
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBolt } from '@fortawesome/free-solid-svg-icons'
 
 function countDays(injuryDays){
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -44,15 +13,15 @@ function countDays(injuryDays){
 function Card(props) {
     return (
       <div>
-        <CardContainer>
-          <CardLeft>
+        <div className="card-container">
+          <div className="card-left">
             <span class="card-name">{props.name}</span>
-            <CardShock>
-             <div className="shock"><BoltIcon/></div>
-             <span className="">{props.shock}</span>
-            </CardShock>
+            <div className="card-shock">
+            <div className="shock"><FontAwesomeIcon icon={faBolt} /></div>
+             <span className="shock-value"> {props.shock}</span>
+            </div>
             
-          </CardLeft>
+          </div>
           {/* <CardMiddle> */}
             <div className="injuries">
               <ul>
@@ -64,13 +33,13 @@ function Card(props) {
             </ul>
             </div>
           {/* </CardMiddle> */}
-          <CardRight>
+          <div className="card-right">
              <div className="injury-days">
              <span>{countDays(props.startDate)}</span>
              {/* <span>{props.startDate}</span> */}
               </div>
-          </CardRight>
-        </CardContainer>
+          </div>
+        </div>
       </div>
     )
 }

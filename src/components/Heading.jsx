@@ -1,13 +1,12 @@
 import react from "react";
-import AddBtn from "./AddBtn";
 
 function Heading(){
   return(
     <div class="navbar navbar-expand-md navbar-light mb-4 customFont " role="navigation">
     <a class="navbar-brand" href="#">Board</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-    </button>
+    </button> */}
     <div class="collapse navbar-collapse" id="navbarCollapse">
         {/* <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
@@ -73,7 +72,7 @@ function Heading(){
         */}
     
     </div>
-    <AddBtn />
+    
 </div>
   )
 }

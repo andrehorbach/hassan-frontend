@@ -10,10 +10,11 @@ h2 {
   font-size: 1.5rem;
 }
 
-.card-body {
-  display: inline-block;
-  padding: 0px;
+.add-button {
+  padding: 20px;
+  text-align: right;
 }
+
 
 .customFont {
   font-family: "Architects Daughter", sans-serif;
@@ -46,7 +47,9 @@ h2 {
   user-select: none;
 }
 
-
+.start-date {
+  padding-top: 15px;
+}
 
 .App {
   text-align: center;
@@ -87,44 +90,46 @@ h2 {
   }
 }
 
-.card-body {
-  align-items:center;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 2fr 1fr;
-  margin-bottom: 10px;  
-}
-
-.card-name{
-  font-size: 1.6rem;
-  font-weight: 1000;
-
-}
 
 .context-wrapper{
   display: flex;
   justify-content: center;
   height: 100%;
+  overflow: auto;
 }
+
 .column-wrap{
   border-radius: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 30px;
+  padding-top: 50px;
 }
 
-.column-wrap:first-child{
-  padding-top: 0;
+.column-wrap:first-child {
+  padding-top: 25px;
+}
+
+.column-wrap h2 {
+  display: none;
+}
+
+.column-wrap:first-child h2{
+  display: inline;
 }
 
 .dropbox{
   border-radius: 10px;
   border-color:rgb(234, 234, 234);
   margin-right: -1px;
-  min-height: 1000px;
+  min-height: 500px;
   padding: 10px;
-  width: 420px;
+  /* width: 420px; */
+}
+
+.dropbox:first-child {
+  background-color:"rgb(214, 214, 214)";
+  border-radius: 10px;
 }
 
 
@@ -137,11 +142,52 @@ h2 {
   margin: 0 0 10px 0;
   color: #111;
   min-height: 10px;
-  width: 400px;
+  width: 350px; 
 }
 
 .dragbox:last-child {
   margin-bottom: 0;
+}
+
+.card-container {
+  display: grid;
+  line-height: normal;
+  grid-template-columns: 1.5fr 1.5fr 1.5fr;
+  vertical-align: middle;
+}
+
+.card-body {
+  align-items:center;
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 2fr 1fr;
+  margin-bottom: 10px;  
+}
+
+.card-name{
+  font-size: 1.4rem;
+  font-weight: 1000;
+}
+
+.card-shock {
+  line-height: 25px;
+  padding-left: 10px;
+  padding-top: 10%;
+  vertical-align: center;
+}
+
+.card-left {
+  font-size: 1.4rem;
+  padding-top: 7%;
+  padding-left: 5px;
+  width: 140px;
+}
+
+.card-right {
+  font-weight: 1000;
+  font-size: 2.0rem;
+  line-height: normal;
+  padding-left: 10px;
 }
 
 .injury-days {
@@ -176,11 +222,95 @@ h2 {
 
 .injuries li {
   list-style-type: none;
-  
+  padding: 0 5px;
 }
 
 
 .shock {
   display: inline;
-  vertical-align: sub;
+  vertical-align: middle;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+  h2 {
+    font-size: 0.8rem;
+  }
+
+  .column-wrap{
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 15px;
+  }
+  
+  .column-wrap:first-child{
+    padding-top: 0;
+  }
+
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+
+  .card-left {
+    text-align: center;
+    padding-left: 0;
+    width: 80px;
+  }
+
+  .card-right {
+    padding-left: 0;
+  }
+
+  .card-name {
+    font-size: 0.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-shock {
+    display: none;
+  }
+
+  .dragbox {
+    line-height: 10px;
+    padding-bottom: 0;
+    padding-top: 0;
+    width: auto;
+  }
+
+  .injuries {
+    align-items: center;
+    display: flex;   
+    font-size: 0.6rem;
+    margin: auto;
+    padding-top: 10%;
+    text-align: center;
+    width: auto;
+  }
+
+  .injuries li:nth-of-type(1n+2) {
+    display: none;
+}
+
+  .injury-days {
+    background-image: none;
+    /* background-size:contain; */
+    line-height: 50px;
+    margin: auto;
+    max-height: 50px;
+    max-width: 50px; 
+    text-align: center;
+    width: auto;
+  }
+
+  .injury-days span {
+    font-size: 1rem; 
+  }
+
+
+
 }

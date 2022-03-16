@@ -3,60 +3,44 @@ import './App.css';
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Heading from "./components/Heading"
 import Card from "./components/Card"
+import AddBtn from "./components/AddBtn"
+import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
+
 
 var columnList = {
   ['Column A']: {
     name: "Programação do Dia",
-    items: [],
-    style: {
-      backgroundColor: "rgb(214, 214, 214)",
-      borderRadius: "10px"
-    }
+    items: []
   },
   ['Column B']: {
     name: ".",
-    items: [],
-    style: {
-      backgroundColor: "rgb(244, 244, 244)",
-      marginLeft: 25
-    }
+    items: []
   },
   ['Column C']: {
     name: ".",
-    items: [],
-    style: {
-      backgroundColor: "rgb(244, 244, 244)"
-    }
+    items: []
   },
-  // [uuid()]: {
-  //   name: ".",
-  //   items: [],
-  //   style: {
-  //     backgroundColor: "rgb(244, 244, 244)" 
-  //   }
-  // },
-  // [uuid()]: {
-  //   name: ".",
-  //   items: [],
-  //   style: {
-  //     backgroundColor: "rgb(244, 244, 244)" 
-  //   }
-  // },
-  // [uuid()]: {
-  //   name: ".",
-  //   items: [],
-  //   style: {
-  //     backgroundColor: "rgb(244, 244, 244)" 
-  //   }
-  // }
+  ['Column D']: {
+    name: ".",
+    items: []
+  },
+  ['Column E']: {
+    name: ".",
+    items: []
+  },
+  ['Column F']: {
+    name: ".",
+    items: []
+  }
 };
-
-
 
 const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
  
 
-  //if (!result.destination) return;
+  if (!result.destination) {
+    // executar comando para excluir, perguntando ao usuário
+    return;
+  }
   const { source, destination } = result;
   if (source.droppableId !== destination.droppableId) {
     
@@ -96,6 +80,31 @@ const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
 
 };
 
+//function to add new client to firstcolumn
+const addClient = (newClient, taskColumns, setTaskColumns, count, setCount) => {
+
+  const column = taskColumns['Column A'];
+  const copiedItems = [...column.items];
+  copiedItems.push(newClient);
+
+  console.log(newClient);
+
+  taskColumns['Column A'].items.push(newClient);
+
+  setTaskColumns({
+      ...taskColumns,
+      ['Column A']: {
+        ...column,
+        items: copiedItems
+      }
+    })
+
+  
+  console.log(taskColumns)
+  setCount(count + 1); //send to backend
+
+}
+
 //função para atualizar (enviar ao backend) as colunas:
 async function updateColumns(columns) {
  
@@ -114,7 +123,6 @@ async function updateColumns(columns) {
     return e;
   }
 }
-
 
 function App() {
   
@@ -145,6 +153,7 @@ function App() {
   }, [count]);
 
   return (
+    
     <div className="main-wrapper">
       <Heading />
       <div className="context-wrapper">
@@ -174,8 +183,8 @@ function App() {
                           {column.items.map((item, index) => {
                             return (
                               <Draggable
-                                key={item.id}
-                                draggableId={item.id}
+                                key={item._id}
+                                draggableId={item._id}
                                 index={index}
                               >
                                 {(provided, snapshot) => {
@@ -217,6 +226,9 @@ function App() {
           })}
         </DragDropContext>
       </div>
+      <AddBtn 
+        onAdd={newClient => addClient(newClient, taskColumns, setTaskColumns, count, setCount)}
+      />
     </div>  
     );
 }
