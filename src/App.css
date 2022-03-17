@@ -10,11 +10,12 @@ h2 {
   font-size: 1.5rem;
 }
 
-.add-button {
-  padding: 20px;
-  text-align: right;
-}
 
+.add-button {
+  color: grey;
+  padding: 20px;
+  text-align: center;
+}
 
 .customFont {
   font-family: "Architects Daughter", sans-serif;
@@ -104,10 +105,11 @@ h2 {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
+  min-width: 369px;
 }
 
 .column-wrap:first-child {
-  padding-top: 25px;
+  padding-top: 23px;
 }
 
 .column-wrap h2 {
@@ -190,13 +192,27 @@ h2 {
   padding-left: 10px;
 }
 
+.delete {
+  color: lightgrey;
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.delete-icon:hover{
+  color: red;
+  cursor: pointer;
+  transition: color 0.5s ease;
+}
+
+
 .injury-days {
   background-image: url("circle-mark.png");
   background-size:contain;
   height: 100px;
-  line-height: 100px;
   text-align: center;
   width: 100px;
+  display:table;
 }
 
 .injury-days span {
@@ -206,6 +222,8 @@ h2 {
   padding-bottom: 3px;
   vertical-align: middle;
   text-align: center;
+  display:table-cell;
+  vertical-align:middle;
 }
 
 .injuries {
@@ -243,7 +261,8 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 15px;
+    padding-top: 23px;
+    min-width: 122px;
   }
   
   .column-wrap:first-child{

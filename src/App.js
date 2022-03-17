@@ -4,8 +4,6 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Heading from "./components/Heading"
 import Card from "./components/Card"
 import AddBtn from "./components/AddBtn"
-import { faWindowClose } from "@fortawesome/free-solid-svg-icons";
-
 
 var columnList = {
   ['Column A']: {
@@ -39,6 +37,18 @@ const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
 
   if (!result.destination) {
     // executar comando para excluir, perguntando ao usuário
+    const { source, destination } = result;
+    const sourceColumn = taskColumns[source.droppableId];
+    const sourceItems = [...sourceColumn.items];
+    const [removed] = sourceItems.splice(source.index, 1);
+    setTaskColumns({
+      ...taskColumns,
+      [source.droppableId]: {
+        ...sourceColumn,
+        items: sourceItems
+      }
+    });
+    setCount(count + 1);
     return;
   }
   const { source, destination } = result;
@@ -101,13 +111,24 @@ const addClient = (newClient, taskColumns, setTaskColumns, count, setCount) => {
 
   
   console.log(taskColumns)
-  setCount(count + 1); //send to backend
+  setCount(count + 1); //send to backend 
 
 }
+
+//function to delete a client:
+
+const handleDeleteRequest = (client) => {
+
+  window.alert(client)
+
+}
+
+//
 
 //função para atualizar (enviar ao backend) as colunas:
 async function updateColumns(columns) {
  
+  console.log(columns)
   const newColumns = {Columns: columns}
 
   try {
@@ -183,8 +204,8 @@ function App() {
                           {column.items.map((item, index) => {
                             return (
                               <Draggable
-                                key={item._id}
-                                draggableId={item._id}
+                                key={item.id}
+                                draggableId={item.id}
                                 index={index}
                               >
                                 {(provided, snapshot) => {
@@ -203,10 +224,13 @@ function App() {
                                     >
                                     {/* Items go below here */}
                                       <Card 
+                                        key = {item.id}
+                                        id = {item.id}
                                         name = {item.name}
                                         injuries = {item.injuries}
                                         shock = {item.shock}
                                         startDate = {item.startDate}
+                                        deleteRequest = {client => handleDeleteRequest(client, taskColumns, setTaskColumns, count, setCount)}
                                       />
                                      
                                     </div>

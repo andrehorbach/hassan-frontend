@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBolt } from '@fortawesome/free-solid-svg-icons'
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function countDays(injuryDays){
   const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -10,7 +11,15 @@ function countDays(injuryDays){
   return diffDays;
 }
 
+
 function Card(props) {
+
+  const client = props.id
+
+  const handleSubmit = () => {
+    props.deleteRequest(client);
+   }
+
     return (
       <div>
         <div className="card-container">
@@ -20,7 +29,7 @@ function Card(props) {
             <div className="shock"><FontAwesomeIcon icon={faBolt} /></div>
              <span className="shock-value"> {props.shock}</span>
             </div>
-            
+          
           </div>
           {/* <CardMiddle> */}
             <div className="injuries">
@@ -36,10 +45,14 @@ function Card(props) {
           <div className="card-right">
              <div className="injury-days">
              <span>{countDays(props.startDate)}</span>
+             </div>
+
+             
              {/* <span>{props.startDate}</span> */}
-              </div>
+              
           </div>
         </div>
+        
       </div>
     )
 }

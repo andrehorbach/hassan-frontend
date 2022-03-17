@@ -3,7 +3,7 @@ import react from "react";
 function Heading(){
   return(
     <div class="navbar navbar-expand-md navbar-light mb-4 customFont " role="navigation">
-    <a class="navbar-brand" href="#">Board</a>
+    <a class="navbar-brand" href="#">Physical Therapy Board</a>
     {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button> */}

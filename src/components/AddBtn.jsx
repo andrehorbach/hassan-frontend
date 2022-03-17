@@ -1,5 +1,4 @@
 import React from "react";
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import Button from '@mui/material/Button';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
@@ -16,6 +15,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 //import DatePicker from '@mui/lab/DatePicker';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+const { v4: uuidv4 } = require('uuid');
 
 const theme = createTheme({
 
@@ -31,10 +31,11 @@ function AddBtn(props) {
   
   // constant to keep Clients data:
   const newClient = {
+    id: "",
     name: "",
     startDate: "",
     injuries: [],
-    shock: "0"
+    shock: 0
   }
 
   //const { name, startDate, injuries } = newClient;
@@ -57,6 +58,7 @@ function AddBtn(props) {
    props.onAdd(client);
    setOpen(false);  
   }
+
   // <- Controles de Dialog
 
   // Controles de Valor ->
@@ -65,7 +67,8 @@ function AddBtn(props) {
     const {name, value} = e.target;
     setClient(prevValue => {
       return {
-        ...prevValue, 
+        ...prevValue,
+        "id": uuidv4(), 
         [name]: value
       }
     }
@@ -74,15 +77,17 @@ function AddBtn(props) {
   }
 
   function changeDate(newDate) {
-    const formattedDate = newDate.toLocaleDateString("pt-BR");
+
     setValue(newDate);
     setClient(prevValue => {
       return {
         ...prevValue,
-        ["startDate"]: formattedDate
+        ["startDate"]: newDate
       }
     })
     console.log(client)
+
+
   }
 
   function changeInjuries(injuries){
