@@ -132,7 +132,7 @@ async function updateColumns(columns) {
   const newColumns = {Columns: columns}
 
   try {
-    const response = await fetch('https://hassan-backend.herokuapp.com/', {
+    const response = await fetch('https://hassan-backend.herokuapp.com/posts/', {
       method: "POST",
       mode: 'cors',
       headers: {'Content-Type': 'application/json'},
