@@ -132,7 +132,7 @@ async function updateColumns(columns) {
   const newColumns = {Columns: columns}
 
   try {
-    const response = await fetch('http://localhost:8080/posts/', {
+    const response = await fetch('https://hassan-backend.herokuapp.com/', {
       method: "POST",
       mode: 'cors',
       headers: {'Content-Type': 'application/json'},
@@ -156,7 +156,7 @@ function App() {
   // useEffect para carregar as colunas
   useEffect(async () => {
 
-    const response = await fetch('http://localhost:8080/');
+    const response = await fetch('https://hassan-backend.herokuapp.com/');
     const data = await response.json();
 
     columnList = data[0].Columns
