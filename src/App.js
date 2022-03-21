@@ -97,8 +97,6 @@ const addClient = (newClient, taskColumns, setTaskColumns, count, setCount) => {
   const copiedItems = [...column.items];
   copiedItems.push(newClient);
 
-  console.log(newClient);
-
   taskColumns['Column A'].items.push(newClient);
 
   setTaskColumns({
@@ -109,8 +107,6 @@ const addClient = (newClient, taskColumns, setTaskColumns, count, setCount) => {
       }
     })
 
-  
-  console.log(taskColumns)
   setCount(count + 1); //send to backend 
 
 }
@@ -128,7 +124,6 @@ const handleDeleteRequest = (client) => {
 //função para atualizar (enviar ao backend) as colunas:
 async function updateColumns(columns) {
  
-  console.log(columns)
   const newColumns = {Columns: columns}
 
   try {
