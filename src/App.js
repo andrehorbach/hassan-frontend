@@ -4,6 +4,7 @@ import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import Heading from "./components/Heading"
 import Card from "./components/Card"
 import AddBtn from "./components/AddBtn"
+import { isPlainObject } from "@mui/utils";
 
 var columnList = {
   ['Column A']: {
@@ -59,6 +60,7 @@ const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
     const sourceItems = [...sourceColumn.items];
     const destItems = [...destColumn.items];
     const [removed] = sourceItems.splice(source.index, 1);
+   
     destItems.splice(destination.index, 0, removed);
     setTaskColumns({
       ...taskColumns,
@@ -77,6 +79,7 @@ const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
     const copiedItems = [...column.items];
     const [removed] = copiedItems.splice(source.index, 1);
     copiedItems.splice(destination.index, 0, removed);
+    
     setTaskColumns({
       ...taskColumns,
       [source.droppableId]: {
@@ -111,13 +114,45 @@ const addClient = (newClient, taskColumns, setTaskColumns, count, setCount) => {
 
 }
 
-//function to delete a client:
+//function to send new Shock to backend
 
-const handleDeleteRequest = (client) => {
+const changeShock = (changedClient, taskColumns, setTaskColumns, count, setCount) => {
 
-  window.alert(client)
+  const client = changedClient
+  let columns = {}
 
-}
+  let newColumns = taskColumns
+  
+  console.log(client.shock);
+
+  console.log(newColumns);
+
+  // loop through taskColumns so we can update it properly:
+  for (let val in newColumns) {
+    if(isPlainObject(newColumns[val])) {
+      for (let val2 in newColumns[val]) {
+        if (Array.isArray(newColumns[val][val2])) {
+          for (let val3 in newColumns[val][val2]) {
+           if(isPlainObject(newColumns[val][val2][val3])){
+            if (newColumns[val][val2][val3].name === client.name) {
+              //console.log("Shock changed from " + root[val][val2][val3].shock + " to " + client.shock)
+              newColumns[val][val2][val3].shock = client.shock
+            }
+           }
+          }
+        }
+      }
+    }
+  }
+ 
+  console.log(newColumns);
+
+  setTaskColumns(newColumns);
+
+//  console.log(taskColumns);
+  //setCount(count + 1);
+
+};
 
 //
 
@@ -127,7 +162,9 @@ async function updateColumns(columns) {
   const newColumns = {Columns: columns}
 
   try {
-    const response = await fetch('https://hassan-backend.herokuapp.com/posts/', {
+     const response = await fetch('https://hassan-backend.herokuapp.com/posts/', {
+    //const response = await fetch('http://localhost:8080/posts/', {
+      
       method: "POST",
       mode: 'cors',
       headers: {'Content-Type': 'application/json'},
@@ -152,6 +189,7 @@ function App() {
   useEffect(async () => {
 
     const response = await fetch('https://hassan-backend.herokuapp.com/');
+    //const response = await fetch('http://localhost:8080/');
     const data = await response.json();
 
     columnList = data[0].Columns
@@ -225,7 +263,7 @@ function App() {
                                         injuries = {item.injuries}
                                         shock = {item.shock}
                                         startDate = {item.startDate}
-                                        deleteRequest = {client => handleDeleteRequest(client, taskColumns, setTaskColumns, count, setCount)}
+                                        changeShock ={changedClient => changeShock(changedClient, taskColumns, setTaskColumns, count, setCount)}
                                       />
                                      
                                     </div>

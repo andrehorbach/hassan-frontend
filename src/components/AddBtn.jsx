@@ -73,7 +73,6 @@ function AddBtn(props) {
       }
     }
     )
-    console.log(client);
   }
 
   function changeDate(newDate) {
@@ -85,7 +84,7 @@ function AddBtn(props) {
         ["startDate"]: newDate
       }
     })
-    console.log(client)
+
 
 
   }
@@ -99,7 +98,7 @@ function AddBtn(props) {
       }
     }
     )
-    console.log(client);
+ 
   }
 
  // <- Controles de Valor:

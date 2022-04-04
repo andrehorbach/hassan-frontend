@@ -172,7 +172,7 @@ h2 {
 }
 
 .card-shock {
-  line-height: 25px;
+  line-height: 20px;
   padding-left: 10px;
   padding-top: 10%;
   vertical-align: center;
@@ -243,10 +243,25 @@ h2 {
   padding: 0 5px;
 }
 
-
 .shock {
+  cursor: pointer;
   display: inline;
   vertical-align: middle;
+}
+
+.shock-edit {
+  cursor: pointer;
+  display: inline;
+  font-size: 1.3rem;
+  grid-template-columns: 1fr 1fr;
+}
+
+.shock-value-edit {
+  background-color: rgb(248, 248, 248);
+  border: 2px red;
+  border-radius: 10%;
+  margin-left: 10px;
+  width: 50px;
 }
 
 
