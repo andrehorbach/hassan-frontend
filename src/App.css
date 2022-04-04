@@ -147,7 +147,6 @@ h2 {
   margin: 0 0 10px 0;
   color: #111;
   min-height: 10px;
-  
 }
 
 .dragbox:last-child {
@@ -253,7 +252,7 @@ h2 {
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media screen and (max-width: 1500px), only screen and (max-width: 1200px) {
 
   h2 {
     font-size: 0.8rem;
