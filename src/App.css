@@ -97,6 +97,9 @@ h2 {
   justify-content: center;
   height: 100%;
   overflow: auto;
+  margin-left: 10px;
+  max-width: 98%;
+  padding-bottom: 20px;
 }
 
 .column-wrap{
@@ -105,7 +108,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   padding-top: 50px;
-  min-width: 369px;
+  min-width: 200px;
 }
 
 .column-wrap:first-child {
@@ -124,8 +127,8 @@ h2 {
   border-radius: 10px;
   border-color:rgb(234, 234, 234);
   margin-right: -1px;
-  min-height: 500px;
-  padding: 10px;
+  min-height: 350px;
+  padding: 8px;
   /* width: 420px; */
 }
 
@@ -144,7 +147,7 @@ h2 {
   margin: 0 0 10px 0;
   color: #111;
   min-height: 10px;
-  width: 350px; 
+  
 }
 
 .dragbox:last-child {
@@ -167,7 +170,7 @@ h2 {
 }
 
 .card-name{
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 1000;
 }
 
@@ -179,45 +182,30 @@ h2 {
 }
 
 .card-left {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   padding-top: 7%;
   padding-left: 5px;
-  width: 140px;
+  width: 120px;
 }
 
 .card-right {
   font-weight: 1000;
-  font-size: 2.0rem;
   line-height: normal;
-  padding-left: 10px;
+  
 }
-
-.delete {
-  color: lightgrey;
-  display: block;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.delete-icon:hover{
-  color: red;
-  cursor: pointer;
-  transition: color 0.5s ease;
-}
-
 
 .injury-days {
   background-image: url("circle-mark.png");
   background-size:contain;
-  height: 100px;
+  height: 80px;
   text-align: center;
-  width: 100px;
+  width: 80px;
   display:table;
 }
 
 .injury-days span {
   display: inline-block;
-  font-size: 2rem;
+  font-size: 1.5rem;
   line-height: normal;
   padding-bottom: 3px;
   vertical-align: middle;
@@ -229,7 +217,7 @@ h2 {
 .injuries {
   display: flex;
   align-items: center;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
   text-align: left;
 }
 
@@ -240,7 +228,7 @@ h2 {
 
 .injuries li {
   list-style-type: none;
-  padding: 0 5px;
+  padding: 0 2px;
 }
 
 .shock {
@@ -265,7 +253,7 @@ h2 {
 }
 
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
 
   h2 {
     font-size: 0.8rem;
