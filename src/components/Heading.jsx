@@ -1,13 +1,11 @@
-import react from "react";
-
 function Heading(){
   return(
-    <div class="navbar navbar-expand-md navbar-light mb-4 customFont " role="navigation">
-    <a class="navbar-brand" href="#"><img src="hassan.png" alt="hassan-logo"></img></a>
+    <div className="navbar navbar-expand-md navbar-light mb-4 customFont " role="navigation">
+    <img src="hassan.png" alt="hassan-logo"></img>
     {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button> */}
-    <div class="collapse navbar-collapse" id="navbarCollapse">
+    <div className="collapse navbar-collapse" id="navbarCollapse">
         {/* <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>

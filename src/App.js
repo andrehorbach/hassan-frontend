@@ -62,6 +62,7 @@ const onDragEnd = (result, taskColumns, setTaskColumns, count, setCount) => {
     const [removed] = sourceItems.splice(source.index, 1);
    
     destItems.splice(destination.index, 0, removed);
+  
     setTaskColumns({
       ...taskColumns,
       [source.droppableId]: {
@@ -162,7 +163,7 @@ async function updateColumns(columns) {
   const newColumns = {Columns: columns}
 
   try {
-    const response = await fetch('https://hassan-backend.herokuapp.com/posts/', {
+    const response = await fetch('https://hassan-backend.onrender.com/posts/', {
     //const response = await fetch('http://localhost:8080/posts/', {
       
       method: "POST",
@@ -188,7 +189,7 @@ function App() {
   // useEffect para carregar as colunas
   useEffect(async () => {
 
-    const response = await fetch('https://hassan-backend.herokuapp.com/');
+    const response = await fetch('https://hassan-backend.onrender.com/');
     //const response = await fetch('http://localhost:8080/');
     const data = await response.json();
 
@@ -226,13 +227,13 @@ function App() {
                         <div className="dropbox"
                           {...provided.droppableProps}
                           ref={provided.innerRef}
-                          // style={{
+                          style={{
 
-                            // background: snapshot.isDraggingOver
-                            //   ? "transparent"
-                            //   : "transparent"
+                            background: snapshot.isDraggingOver
+                              ? "transparent"
+                              : "transparent"
                             
-                          // }}
+                          }}
                         >
                           {column.items.map((item, index) => {
                             return (
