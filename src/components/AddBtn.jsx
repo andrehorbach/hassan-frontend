@@ -10,11 +10,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import InjuryList from './InjuryList';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { format } from 'date-fns'
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { LocalizationProvider } from '@mui/x-date-pickers';
 //import DatePicker from '@mui/lab/DatePicker';
-import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
+import { DesktopDatePicker } from '@mui/x-date-pickers'
 const { v4: uuidv4 } = require('uuid');
 
 const theme = createTheme({

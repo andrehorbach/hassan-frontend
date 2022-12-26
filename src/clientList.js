@@ -102,7 +102,7 @@ let clients2 = {
     },
     "Columns":{
        "Column A":{
-          "name":"Programação do Dia",
+          "name":"Programação do Mamao",
           "items":[
              {
                 "_id":"620eec846bbb1d2487142f9f",
