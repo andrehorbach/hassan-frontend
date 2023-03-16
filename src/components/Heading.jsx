@@ -1,7 +1,7 @@
 function Heading(){
   return(
     <div className="navbar navbar-expand-md navbar-light mb-4 customFont " role="navigation">
-    <img src="hassan.png" alt="hassan-logo"></img>
+    <img src="logo.png" alt="board-logo"></img>
     {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button> */}
