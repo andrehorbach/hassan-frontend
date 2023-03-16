@@ -163,8 +163,8 @@ async function updateColumns(columns) {
   const newColumns = {Columns: columns}
 
   try {
-    //const response = await fetch('https://hassan-backend.onrender.com/posts/', {
-    const response = await fetch('http://localhost:8080/posts/', {
+    const response = await fetch('https://hassan-backend.onrender.com/posts/', {
+    //const response = await fetch('http://localhost:8080/posts/', {
       
       method: "POST",
       mode: 'cors',
@@ -190,8 +190,8 @@ function App() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
 
-    //const response = await fetch('https://hassan-backend.onrender.com/');
-    const response = await fetch('http://localhost:8080/');
+    const response = await fetch('https://hassan-backend.onrender.com/');
+    //const response = await fetch('http://localhost:8080/');
     const data = await response.json();
 
     columnList = data[0].Columns
